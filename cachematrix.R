@@ -2,6 +2,7 @@
 ## functions do
 
 ## Write a short comment describing this function
+## function makeCacheMatrix to create special matrix object
 
 makeCacheMatrix <- function(x = matrix()) {
         m <- NULL  ## Initialize the cache for the inverse as NULL.
@@ -27,19 +28,26 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## Write a short comment describing this function
+## function cacheSolve to check if matrix inverse has already been calculated,
+## if not, calculate the inverse
 
 cacheSolve <- function(x, ...) {
         m <- x$getInverse()  ## Check if the inverse is already cached.
         
+	## If cached, return the cached inverse.
         if(!is.null(m)) {
-                message("getting cached data")  ## If cached, return the cached inverse.
+                message("getting cached data")  
                 return(m)
         }
         
-        data <- x$get()  ## Get the matrix from the object.
-        m <- solve(data, ...)  ## Compute the inverse of the matrix.
-        x$setInverse(m)  ## Cache the computed inverse.
-        m  ## Return the computed inverse.
+	## Get the matrix from the object.
+        data <- x$get()  
+	## Compute the inverse of the matrix.
+        m <- solve(data, ...)  
+	## Cache the computed inverse.
+        x$setInverse(m)  
+	## Return the computed inverse.
+        m  
 }
 
 
